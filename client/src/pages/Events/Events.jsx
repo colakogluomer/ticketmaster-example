@@ -13,13 +13,13 @@ const Events = () => {
   const [totalElements, setTotalElements] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   // Fetch events dynamically with the updated page information and search query
   useEffect(() => {
-    setLoading(true); // Set loading to true before starting the fetch
+    setLoading(true);
     setError(false);
 
     fetchEvents(debouncedSearchQuery || "", currentPage, pageSize)
@@ -37,9 +37,8 @@ const Events = () => {
       });
   }, [debouncedSearchQuery, currentPage, pageSize]);
 
-  // Sorting logic remains the same
+  // Sorting logic
   const sortedEvents = useMemo(() => {
-    console.log("events", events);
     let sortableEvents = [...events];
 
     if (sortConfig.key) {
