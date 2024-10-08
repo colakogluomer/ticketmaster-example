@@ -1,0 +1,18 @@
+{
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^.+\\.svg$": "jest-svg-transformer",
+      "^.+\\.(css|less|scss)$": "identity-obj-proxy",
+      "^react$": "<rootDir>/node_modules/react/index.js"
+    },
+    "setupFilesAfterEnv": ["client/src/setupTests.js"],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "globals": {
+      "__API_URL__": "https://app.ticketmaster.com/discovery/v2",
+      "__API_KEY__": "zkZP8oiYTuWce3gXFP5KKEhNFQEdCMD0"
+    }
+  }
+}
