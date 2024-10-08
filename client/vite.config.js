@@ -14,5 +14,10 @@ export default defineConfig(({ command, mode }) => {
       __API_URL__: JSON.stringify(env.VITE_API_URL),
       __API_KEY__: JSON.stringify(env.VITE_API_KEY),
     },
+    // To mocking a prod env
+    preview: {
+      host: true,
+      port: 3001,
+    },
   };
 });
