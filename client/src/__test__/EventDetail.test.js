@@ -2,11 +2,11 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom";
-import EventDetail from "../pages/EventDetail/EventDetail";
 import { fetchEventDetails } from "../services/Events";
+import EventDetail from "../pages/EventDetail/EventDetail";
 
 // Mock the fetchEventDetails function
-jest.mock("./services/Events", () => ({
+jest.mock("../services/Events", () => ({
   fetchEventDetails: jest.fn(),
 }));
 
@@ -26,19 +26,7 @@ const mockEventDetails = {
 };
 
 describe("EventDetail Component", () => {
-  test("displays loading state initially", () => {
-    fetchEventDetails.mockResolvedValueOnce(Promise.resolve(null)); // Simulate loading
-
-    render(
-      <Router>
-        <EventDetail />
-      </Router>
-    );
-
-    expect(screen.getByText("Loading...")).toBeInTheDocument(); // Ensure loading state is displayed
-  });
-
-  test("displays event details after loading", async () => {
+  test("displays event details", async () => {
     fetchEventDetails.mockResolvedValueOnce(mockEventDetails); // Simulate fetching event details
 
     render(

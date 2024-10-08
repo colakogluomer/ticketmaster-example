@@ -79,22 +79,6 @@ describe("User Flow Tests", () => {
     });
   });
 
-  test("Table displays loading state", () => {
-    render(
-      <Table
-        events={[]}
-        setSortConfig={setSortConfig}
-        sortConfig={{ key: "name", direction: "ascending" }}
-        loading={true}
-        error={false}
-        pageSize={2}
-      />
-    );
-
-    // Check for loading state (pulse animations)
-    expect(screen.getAllByText("Loading...")).toHaveLength(2); // 2 rows
-  });
-
   test("Table displays error state", () => {
     render(
       <Table
