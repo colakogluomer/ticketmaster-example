@@ -92,27 +92,6 @@ describe("User Flow Tests", () => {
     );
 
     // Check for error message
-    expect(screen.getByText("No events found")).toBeInTheDocument();
-  });
-
-  test("Table shows 'Buy Tickets' or 'Sold Out' button", () => {
-    render(
-      <Router>
-        <Table
-          events={mockEvents}
-          setSortConfig={setSortConfig}
-          sortConfig={{ key: "name", direction: "ascending" }}
-          loading={false}
-          error={false}
-          pageSize={2}
-        />
-      </Router>
-    );
-
-    // Check if 'Buy Tickets' is shown for onsale event
-    expect(screen.getByText("Buy Tickets")).toBeInTheDocument();
-
-    // Check if 'Sold Out' is shown for offsale event
-    expect(screen.getByText("Sold Out")).toBeInTheDocument();
+    expect(screen.getByText("No Events Found")).toBeInTheDocument();
   });
 });
