@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"; // For routing
-import Spinner from "./components/Spinner";
-import NoEventsFound from "./components/NoEventsFound";
+import NoEventsFound from "../../components/NoEventsFound";
 
 const Table = ({
   events,
@@ -56,7 +55,7 @@ const Table = ({
               Date & Time {renderChevrons("date")}
             </th>
             <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">
-              Venue {renderChevrons("location")}
+              Venue
             </th>
             <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">
               Price

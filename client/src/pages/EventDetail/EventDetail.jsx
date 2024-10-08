@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchEventDetails } from "./services/Events";
+import { fetchEventDetails } from "../../services/Events";
 
 const LoadingPulse = () => (
   <div className="animate-pulse space-y-4">

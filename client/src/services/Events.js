@@ -1,13 +1,10 @@
 import axios from "axios";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-const BASE_URL = import.meta.env.VITE_API_URL;
-
 export const fetchEvents = async (keyword, page, pageSize) => {
   try {
-    const response = await axios.get(`${BASE_URL}/events.json`, {
+    const response = await axios.get(`${__API_URL__}/events.json`, {
       params: {
-        apikey: API_KEY,
+        apikey: __API_KEY__,
         keyword: keyword,
         page: page - 1,
         size: pageSize,
@@ -25,8 +22,8 @@ export const fetchEvents = async (keyword, page, pageSize) => {
 
 export const fetchEventDetails = async (eventId) => {
   try {
-    const response = await axios.get(`${BASE_URL}/events/${eventId}.json`, {
-      params: { apikey: API_KEY },
+    const response = await axios.get(`${__API_URL__}/events/${eventId}.json`, {
+      params: { apikey: __API_KEY__ },
     });
     return response.data;
   } catch (error) {
