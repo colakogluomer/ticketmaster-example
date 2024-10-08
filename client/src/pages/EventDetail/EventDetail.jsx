@@ -28,7 +28,6 @@ export default function EventDetail() {
           src={event.images[1].url}
           alt={`Event image`}
           className="w-24 h-24 object-cover rounded-lg shadow-md cursor-pointer transition-all duration-300 hover:opacity-75"
-          onClick={() => setSelectedImage(image)}
         />
         <h1 className="text-4xl font-bold text-blue-800 mb-6">{event.name}</h1>
       </div>
