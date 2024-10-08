@@ -1,35 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchEventDetails } from "../../services/Events";
-
-const LoadingPulse = () => (
-  <div className="animate-pulse space-y-4">
-    <div className="h-8 bg-gray-300 rounded w-3/4"></div>
-    <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-    <div className="h-4 bg-gray-300 rounded w-5/6"></div>
-    <div className="h-64 bg-gray-300 rounded"></div>
-    <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-    <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-  </div>
-);
-
-const ImageModal = ({ image, onClose }) => (
-  <div
-    className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-    onClick={onClose}
-  >
-    <div className="max-w-3xl max-h-full p-4">
-      <img
-        src={image.url}
-        alt="Event"
-        className="max-w-full max-h-full object-contain"
-      />
-    </div>
-  </div>
-);
+import LoadingPulse from "../../components/LoadingPulse";
 
 export default function EventDetail() {
-  const { eventId } = useParams(); // Get event ID from the URL
+  const { eventId } = useParams();
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
@@ -37,8 +12,6 @@ export default function EventDetail() {
       setEvent(data);
     });
   }, [eventId]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState(null);
 
   if (!event) {
     return (
@@ -50,7 +23,7 @@ export default function EventDetail() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 mb-6">
         <img
           src={event.images[1].url}
           alt={`Event image`}
@@ -213,11 +186,15 @@ export default function EventDetail() {
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-blue-700 mb-4">Seat Plan</h2>
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <img
-            src={event.seatmap?.staticUrl}
-            alt="Event seat plan"
-            className="w-full h-auto"
-          />
+          {event.seatmap?.staticUrl ? (
+            <img
+              src={event.seatmap.staticUrl}
+              alt="Event seat plan"
+              className="w-full h-auto"
+            />
+          ) : (
+            "No Seat Plan Found"
+          )}
         </div>
       </div>
 
@@ -257,13 +234,6 @@ export default function EventDetail() {
           </details>
         </div>
       </div>
-
-      {selectedImage && (
-        <ImageModal
-          image={selectedImage}
-          onClose={() => setSelectedImage(null)}
-        />
-      )}
     </div>
   );
 }

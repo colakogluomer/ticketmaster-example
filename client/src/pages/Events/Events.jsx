@@ -11,7 +11,7 @@ const Events = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(10);
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -34,6 +34,8 @@ const Events = () => {
         setLoading(false);
         setEvents([]);
         setError(true);
+        setTotalElements(0);
+        setTotalPages(1);
       });
   }, [debouncedSearchQuery, currentPage, pageSize]);
 
