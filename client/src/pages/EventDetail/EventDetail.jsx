@@ -176,9 +176,21 @@ export default function EventDetail() {
               </p>
             </div>
           </div>
-          <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out">
-            Buy Tickets
-          </button>
+
+          <Link
+            to={event.dates.status.code !== "offsale" && event.url}
+            target={
+              event.dates.status.code !== "offsale" ? "_blank" : undefined
+            }
+            disabled={event.dates.status.code === "offsale"}
+            className={`w-full py-3 px-4 rounded-lg font-semibold transition duration-300 ease-in-out  ${
+              event.dates.status.code === "offsale"
+                ? "bg-gray-100 text-gray-500 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            }`}
+          >
+            {event.dates.status.code === "offsale" ? "Sold Out" : "Buy Tickets"}
+          </Link>
         </div>
       </div>
 
